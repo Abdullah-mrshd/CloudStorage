@@ -130,7 +130,8 @@ public class HomeController
     public ResponseEntity<Resource> viewFile(@RequestParam("filename") String filename, Authentication auth, Model model)
     {
         File file = fileService.getFile(auth.getName(), filename);
-        return ResponseEntity.ok().contentType(MediaType.parseMediaType(file.getContentType()))
+
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + file.getFilename() + "\"")
                 .body( new ByteArrayResource(file.getFileData()));
     }
