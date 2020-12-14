@@ -90,7 +90,8 @@ public class HomeController
 
         if(errorMsg == null)
         {
-            model.addAttribute("fileUploadSuccess", true);
+            String successMsg = "File uploaded successfully. ";
+            model.addAttribute("successMsg", successMsg);
         }
         else
         {
@@ -105,6 +106,8 @@ public class HomeController
     {
         // Container for deleting file failure message
         String errorMsg;
+        // Container for deleting file success message
+        String successMsg;
         // Track the file deleting process
         int rowsDeleted;
         rowsDeleted = fileService.removeFile(auth.getName(), filename);
@@ -116,7 +119,10 @@ public class HomeController
             return "result";
         }
 
-        return "redirect:/home";
+        successMsg = "File deleted successfully. ";
+        model.addAttribute("successMsg",successMsg);
+
+        return "result";
     }
 
     @GetMapping("/view-file")
@@ -134,6 +140,8 @@ public class HomeController
     {
         // Container for inserting note failure message
         String errorMsg;
+        // Container for adding note success message
+        String successMsg;
         // Track adding note to DB process success
         int rowsAdded;
 
@@ -145,8 +153,11 @@ public class HomeController
             model.addAttribute("errorMsg",errorMsg);
             return "result";
         }
-        model.addAttribute("noteTab",true);
-        return "redirect:/home";
+
+        successMsg = "Note added successfully. ";
+        model.addAttribute("successMsg",successMsg);
+
+        return "result";
     }
 
     @GetMapping("delete-note")
@@ -154,6 +165,8 @@ public class HomeController
     {
         // Container for deleting note failure message
         String errorMsg;
+        // Container for deleting note success message
+        String successMsg;
         // Track deleting note from DB process success
         int rowsDeleted;
 
@@ -165,7 +178,11 @@ public class HomeController
             model.addAttribute("errorMsg",errorMsg);
             return "result";
         }
-        return "redirect:/home";
+
+        successMsg = "Note deleted successfully. ";
+        model.addAttribute("successMsg",successMsg);
+
+        return "result";
     }
 
     @PostMapping("/edit-note")
@@ -173,6 +190,8 @@ public class HomeController
     {
         // Container for editing note failure message
         String errorMsg;
+        // Container for editing note success message
+        String successMsg;
         // Track update DB process success
         int updatedRows;
 
@@ -184,7 +203,11 @@ public class HomeController
             model.addAttribute("errorMsg",errorMsg);
             return "result";
         }
-        return "redirect:/home";
+
+        successMsg = "Note edited successfully. ";
+        model.addAttribute("successMsg",successMsg);
+
+        return "result";
     }
 
     @PostMapping("/add-credential")
@@ -192,6 +215,8 @@ public class HomeController
     {
         // message container for adding credential failure
         String errorMsg;
+        // Container for adding credential success message
+        String successMsg;
         // Track adding to DB process success
         int rowsAdded;
         rowsAdded = credentialService.addCredential(auth.getName(), credentialForm);
@@ -203,7 +228,10 @@ public class HomeController
             return "result";
         }
 
-        return "redirect:/home";
+        successMsg = "Credential added successfully. ";
+        model.addAttribute("successMsg",successMsg);
+
+        return "result";
     }
 
     @GetMapping("/delete-credential")
@@ -211,6 +239,8 @@ public class HomeController
     {
         // message container for deleting credential failure
         String errorMsg;
+        // Container for deleting credential success message
+        String successMsg;
         // Track deleting credential process success
         int rowsDeleted;
 
@@ -223,7 +253,10 @@ public class HomeController
             return "result";
         }
 
-        return "redirect:/home";
+        successMsg = "Credential deleted successfully. ";
+        model.addAttribute("successMsg",successMsg);
+
+        return "result";
     }
 
     @PostMapping("/edit-credential")
@@ -231,6 +264,8 @@ public class HomeController
     {
         // Container for editing credential failure message
         String errorMsg;
+        // Container for editing credential success message
+        String successMsg;
         // Track update DB process success
         int rowsUpdated;
 
@@ -243,7 +278,10 @@ public class HomeController
             return "result";
         }
 
-        return "redirect:/home";
+        successMsg = "Credential edited successfully. ";
+        model.addAttribute("successMsg",successMsg);
+
+        return "result";
     }
 
 
